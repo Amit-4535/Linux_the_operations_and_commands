@@ -1,0 +1,147 @@
+Grep Command 
+
+Grep means the global regular expression print.. used to find the word inside the file or files.. there are various way to find the word inside the file..
+
+1)	Grep “word” file.txt   for finding the word inside the file
+
+2)	Grep -w “word” file.txt   for finding the word inside the file
+
+3)	Grep -I “word” file.txt  case insensitive (means it will get the word it may be in uppercase/lowercase or any format)
+
+4)	Grep -n “word”  file.txt  it will show you the line number inside the file
+
+5)	Grep -win “word” file.txt  it will show you the line,word and case insensitive as well from the file..
+
+6)	grep -win -A4 "notification" grep.txt   this command will show you the 4 lines after from the  “notification” word line
+
+7)	grep -win -B4 "notification" grep.txt   this command will show you the 4 lines before the “notification” word line
+
+8)	ls -ltr | grep -win "notification" *.txt  this command will give you the notification word inside all the .txt files..
+
+9)	ls -ltr | grep -win "notification" *  this command will give you the notification word inside all the formats of the files..
+
+
+some commands of the grep 
+
+Case-insensitive search
+grep -i "failed" logfile
+
+Invert match (exclude pattern)
+grep -v "INFO" logfile
+
+Recursive search in subdirectories
+grep -r "ERROR" /var/log/
+
+Show line numbers
+grep -n "error" app.log
+
+Count matching lines
+grep -c "ERROR" app.log
+
+List only file names with matches
+grep -l "TODO" *.py
+
+List file names without matches
+grep -L "TODO" *.py
+
+Match whole words only
+grep -w "fail" logfile
+
+Show only the matched part (not the whole line)
+grep -o "[0-9]\{3\}" file
+
+Show N lines after the match
+grep -A2 "ERROR" logfile
+
+Show N lines before the match
+grep -B2 "ERROR" logfile
+
+Show N lines of context (before & after)
+grep -C3 "ERROR" logfile
+
+Use extended regex (like egrep)
+`grep -E "ERROR
+
+Below are some examples 
+
+Simple String Search
+grep "failed" /var/log/syslog
+Finds all lines containing the word failed
+
+Case-Insensitive Search
+grep -i "error" application.log
+Matches error, Error, ERROR, etc.
+
+Excluding Lines
+grep -v "INFO" app.log
+Shows all lines except those containing INFO.
+
+Counting Matches
+grep -c "Timeout" server.log
+Counts how many times Timeout appears.
+
+Searching Multiple Files
+grep -r "connection refused" /var/log/
+Recursively search inside /var/log.
+
+Match Whole Words
+grep -w "fail" build.log
+Matches fail but not failure.
+
+Show Context Around Match
+grep -C2 "ERROR" app.log
+Shows 2 lines before and after each ERROR.
+
+Use Regular Expressions
+grep -E "ERROR|FAIL|FATAL" /var/log/app.log
+Matches any of the words ERROR, FAIL, or FATAL.
+
+
+For devops day to day activities.
+
+Log Analysis
+grep "ERROR" /var/log/nginx/error.log
+grep -i "timeout" /var/log/app/*.log
+grep -C3 "Exception" app.log
+
+Monitoring & Alerting
+Combine with wc (word count) to detect error spikes:
+grep -c "CRITICAL" /var/log/app.log
+If the count is high, it can trigger alerts.
+
+Filtering ps or docker Output
+ps aux | grep nginx
+docker ps | grep webapp
+Find running processes or containers.
+
+CI/CD Pipelines
+•  In Jenkins/GitHub Actions, you might grep build logs for “FAILED” or “SUCCESS”.
+•  Example
+if grep -q "BUILD FAILED" build.log; then
+  exit 1
+fi
+
+Config Validation
+grep -r "password" /etc/
+Find files that contain sensitive words.
+
+Networking Checks
+netstat -tulnp | grep 8080
+ss -tulnp | grep nginx
+Check if a port is in use or if a service is running.
+
+Finding TODO/FIXME in Code
+grep -r "TODO" /opt/project/
+
+
+
+Pro Tips
+•	Combine with less for scrolling:
+grep "ERROR" app.log | less
+
+Combine with awk for advanced processing:
+grep "ERROR" app.log | awk '{print $5}'
+
+Use --color=auto to highlight matches:
+grep --color=auto "ERROR" app.log
+
