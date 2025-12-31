@@ -1,0 +1,27 @@
+at command in linux 
+
+The at command is used to schedule a one-time task
+(i.e., a command or script) to run at a specific time in the future.
+Unlike cron, which is for repetitive jobs, at is for one-off scheduled tasks.
+
+Install if not installed 
+sudo apt update
+sudo apt install at
+
+start and enable it 
+sudo systemctl start atd
+sudo systemctl enable atd
+
+syntax   at [TIME]
+
+example  Run a command at a specific time  at 09:30  and then fire the command which you want to run  echo "Good Morning!" >> /tmp/morning.txt   then press ctrl D to save this..
+
+example 2  Run a command tomorrow at 6 PM at 6pm tomorrow
+example 3  Run a script at a specific date and time  at 10:15 AM Jun 21
+example 4  use echo to schedule directly   echo "uptime >> /tmp/uptime.log" | at now + 1 minute
+you can view the scheduled jobs by   atq
+remove a job  atrm <job_number>  atrm 1
+
+
+
+

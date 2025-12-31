@@ -1,0 +1,30 @@
+Directory command 
+
+Pwd  showing current print/working directory
+
+Mkdir foldername  creating new directory
+
+mkdir -p directory1/directory2/directory3  creating multiple directory at a time
+
+rmdir directoryname  removing empty direcrtory
+
+rm -r directoryname  removing not empty directory (before delete it will ask for the confirmation)
+
+rm -rf  removing directory which is not empty and it will not ask for the confirmation.. directly      delete it
+
+cd  foldername  change the directory 
+
+cd .. go one directory back
+
+cd /  go to root directory
+
+cd ~  go to home directory
+
+cd -  go to previous directory
+
+ls -d */  showing all the directories which is available in the current folder
+
+du or du -sh  showing you the directory size of that folder..
+
+find . -type d -name "newdirectory"  find the directory inside the folder..
+

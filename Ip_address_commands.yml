@@ -1,0 +1,41 @@
+Ip address related command 
+
+
+ip a or ip addr  
+Shows IP addresses and interface details.
+
+Ifconfig 
+Shows all network interfaces and their IPs.
+
+hostname -I 
+Shows IP addresses assigned to the host.
+hostname – i  
+Shows the primary IP (mapped to hostname).
+
+ip route 
+Shows default gateway and routing table.
+resolvectl status 
+Shows DNS and domain name settings.
+
+
+cat /etc/resolv.conf 
+Displays DNS server IP addresses.
+
+
+ip link 
+Shows interfaces and MAC addresses.
+
+
+🔹 Summary Table
+Command	Purpose
+ip a / ip addr	IP addresses and interface info
+ifconfig	Older IP and interface info
+hostname -I	IPs of the system
+ip route	Routing table, gateway info
+nmcli device show	Interface, IP, DNS, gateway
+resolvectl status	DNS settings (systemd)
+cat /etc/resolv.conf	DNS servers
+ip link	Interface and MAC info
+ethtool eth0	NIC hardware and driver info
+
+

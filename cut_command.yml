@@ -1,0 +1,141 @@
+Cut command in linux –
+
+Whenever you want to do the changes at the character level, that time the cut command is very useful..
+
+I am having below file called name and inside that I am having below data –
+amit
+megha
+namrata
+aai
+nana
+pillu
+krishna
+chiu
+nava
+akki
+shambhu
+nana
+shivanaya
+shivansh
+lala
+sona
+sona
+amit
+megha
+Shivansh
+Step1st – I want to take the first initial of every name available inside the file
+So the command should be –
+Command -- cut -c1 names.txt
+Output –
+a
+m
+n
+a
+n
+p
+k
+c
+n
+a
+s
+n
+s
+s
+l
+s
+s
+a
+m
+s
+
+step2nd – now the requirement is like I want to take the first and 5th character of the word then the command is –
+command -- cut -c1,5 names.txt
+you will get the below output –
+a
+ma
+na
+a
+n
+pu
+kh
+c
+n
+a
+sb
+n
+sa
+sa
+l
+s
+s
+a
+ma
+sa
+
+step3rd – now the requirement like I want a range of character in the files from like 1st to 5th character then the command should be –
+command – cut -c1-5 names.txt
+output –
+amit
+megha
+namra
+aai
+nana
+pillu
+krish
+chiu
+nava
+akki
+shamb
+nana
+shiva
+shiva
+lala
+sona
+sona
+amit
+megha
+shiva
+
+step3rd – I am having one below file data1
+amit,nama,megha,mama
+nana,nan,papa,soma,rama
+and now the requirement is like I want to print the 2nd column in this file so the command should be – command -- cut -d, -f 2 data1     (here -d is used for delimeter  -f for feild)
+it will give me the 2nd column output—
+nama
+nan
+step4th – oin this below file I want to change the , to a : this symbol –
+file -- amit,nama,megha,mama
+nana,nan,papa,soma,rama
+so I can use the command –
+command -- cut -d, -f 1- data1 --output-delimiter=":"
+cut -d, -f 1- data1 --output-delimiter=" | " (we can use this too)
+cut -d, -f 1- data1 --output-delimiter=" @ " (we can use this too)
+cut -d, -f 1- data1 --output-delimiter=" -- " (we can use this too)
+now it will give me the below output – (we can use this too)
+amit:nama:megha:mama
+nana:nan:papa:soma:rama
+step 5th – this below command will give you the file list available inside in your directory—
+ls -ltr | awk '{print $NF}'
+
+output –
+24
+abc
+def
+xyz
+data
+names.txt
+data1
+now the requirement is I want only 1st and 2nd character of the word then the command is –
+command –
+ls -ltr | awk '{print $NF}' | cut -c1,2
+it will give me the below output –
+24
+ab
+de
+xy
+da
+na
+da
+
+
+

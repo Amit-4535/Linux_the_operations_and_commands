@@ -1,0 +1,49 @@
+Id / who / whoami / w 
+
+Id 
+The id command in Linux is used to display the user ID (UID), group ID (GID), and group memberships of the current user or a specified user.
+This will provide you the output  uid=1000(ec2-user) gid=1000(ec2-user) groups=1000(ec2-user),4(adm),10(wheel),190(systemd-journal)
+Explanation:
+•	uid=1000(amit) → User ID is 1000, username is amit
+•	gid=1000(amit) → Group ID is 1000, group name is amit
+•	groups=... → List of all groups the user is a member of
+
+w 
+
+The w command in Linux shows who is logged in and what they are doing. It provides a snapshot of system activity, combining information about users and their processes.
+This will give you the below output 
+w
+ 15:04:18 up  4:17,  2 users,  load average: 0.00, 0.00, 0.00
+USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
+ec2-user pts/0     13:59    1:04m  0.10s  0.02s sshd: ec2-user [priv]
+ec2-user pts/1     14:00    0.00s  0.32s  0.10s sudo su
+
+🔹 Explanation of Columns:
+Column	Description
+USER	Logged-in username
+TTY	Terminal they are using (pts/0, tty1, etc.)
+FROM	Remote host (or - if local login)
+LOGIN@	Time the user logged in
+IDLE	Time since last activity
+JCPU	Total CPU time for all processes attached to the terminal
+PCPU	CPU time used by the current process
+WHAT	Current command the user is running
+
+Whoami 
+
+The whoami command in Linux simply displays the current logged-in username.
+
+
+logname
+Shows name of the user who started the session
+
+Who 
+
+The who command in Linux is used to show who is currently logged into the system
+
+Expected output  
+$ who
+amit     pts/0        2025-06-12 18:00 (192.168.1.5)
+ubuntu   pts/1        2025-06-12 18:30 (192.168.1.10)
+
+

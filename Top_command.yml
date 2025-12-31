@@ -1,0 +1,44 @@
+Top command 
+
+The top command is a real-time system monitoring tool in Linux. It shows CPU usage, memory usage, running processes, load average, and more — similar to Task Manager on Windows.
+
+
+✅ Process List (Columns)
+Column	Meaning
+PID	Process ID
+USER	Owner of the process
+PR	Priority
+NI	Nice value (affects priority)
+VIRT	Virtual memory used
+RES	Resident (physical) memory used
+SHR	Shared memory
+S	State (R: Running, S: Sleeping, Z: Zombie, T: Stopped)
+%CPU	CPU usage
+%MEM	Memory usage
+
+TIME+	Total CPU time the process has used
+COMMAND	The actual command/process name
+
+
+🔹 Interactive Shortcuts Inside top
+Key	Action
+P	Sort by CPU usage
+M	Sort by memory usage
+T	Sort by time (CPU time used)
+k	Kill a process (you’ll be asked for PID)
+r	Renice a process (change priority)
+q	Quit top
+h	Help menu inside top
+1	Show CPU usage for each core separately
+
+
+🔹 Summary
+Command	Description
+top	Launch process and system monitor
+q	Quit
+P, M, T	Sort by CPU, Memory, Time
+k, r	Kill or renice process
+1	Show per-core CPU stats
+
+
+

@@ -1,0 +1,127 @@
+Sed Command –
+Sed command is a stream editor, whatever we are giving the operation it will perform as a expression.. as a task and will give you the output..
+
+Stream editor means the command we are providing to the CLI and it will give us the output for that command.. so through the sed command we can perform the operations on that output…
+
+
+Command 1st -- sed -n '3p' filename.txt  this command will show you the exact line in the file..
+
+Command 2nd -- sed -n '$p' filename.txt  this command will help you to give you the last line in the file..
+
+Command 3rd  sed -n '2, 4p' data  this command will give you the number of line from 2 to 4th line content it will display you..
+
+Command 4th  sed -n '/india/p' filename.txt
+
+sed -n '/25000/p' filename.txt  this command will give you the india counties data.. with similar find you can search multiple records of 25000 or for india country
+
+Command 5th  sed -n -e '1p' -e '3p' filename.txt
+
+example  sed -n -e '/100000/p' -e '/10000/p' data  this command will helpful in multiple expression.. like in this command I can get the line 1st and 3rd line output.. (here -e for expression)
+
+Command 6th  sed -n '2,+2p' data  with the help of this command I can check the record 2 lines next from the second line.. example (sed -n '3,+2p' data)  here in this example I can see the next 2 lines from the 3rd line..
+
+Command 7th  sed -n '1~2p' data 
+(this is for even number of line from 1st line)// sed -n '1~3p' data (this is for odd number of line from 1st line)  so in this command I can get the odd lines and even lines as per the requirement..
+
+Command 8th  sed -n -f ex_file filename.txt  here in this command  ex_file is the external file and inside that I have mentioned like content (1p,3p and 5p in the new line)  sed -n -f ex_file data
+ So this command will give me the output of 1st line, 3rd line and the 5th line in the data file..
+
+ Command 9th  sed 's/Amit/Amitrao/g' filename.txt   here s for substitute and the g for globally
+this command will change the word from Amit to Amitrao (here in this example s  is for substitute and g for global)  very useful command
+
+Command 10th  sed '2 s/India/England/g' data  
+this command will help you to change the india country to England but for only second line as in the command you mentioned 2 keyword..
+
+Command 11th  sed '2! s/India/England/g' data –
+ if you use this command then it will only leave second line but for others line where india is present will change to England..
+
+Command 12th sed -i '2! s/India/England/g' filename.txt 
+ this command will change in the file itself  here we are using -I attribute, so it will change in the actual file.. the previous command is helpful to check the result, but if you did -I then the changes will made in the file..
+
+Command 13th  sed -i '/Amit/ s/India/canada/g' filename.txt  this command will first check for the Amit user and then it will change his country from india to Canada..
+
+Command 14th  sed -i '7d' filename.txt  This command is used to delete the particular line in the file..
+
+Command 15th  sed '$d' filename
+ This command is used to delete the last line in the file..
+
+Command 16th  sed '2,4d' filename.txt 
+ we can delete multiple line as well with this command..
+
+Command 17th  sed '/Germany/d' filenametxt
+  you can delete the data for particular country.. we can delete multiple records for the Germany country..
+
+ Command 18th  sed -i '/^$/d' filename.txt 
+ This command is used to delete the empty line in the file..
+
+Command 19th   sed '/india/ w indianuser' data 
+ This command is used to search all the india user and it will create new indianuser file and route those records to that file.. (most useful command)  here w for write 
+
+Command 20th  sed '3 a Hey brazil' filename.txt 
+ This command will add a new line after 3rd line and the content is Hey brazil.. (here a is for append)	a is for append here
+
+Command 21st  sed '4 c hello user' filename.txt
+ This command is used to append the existing line  here in this example it will change the 4th line (it will remove the existing content and adding new content here)
+
+Command 22nd  sed '1 i hello there' filename.txt
+  This command is used to add the data on top.. whatever data we have in file those will be move to the next line but here I am saying you can insert the data on to the first line.. all available data will be pushed to the next line..
+
+ Command 23rd  sed -n 'l' data 
+--. This command is useful to check the hidden character in the file..
+Output example  ID Name Salary Country$  here you can see the $ at the last which is the hidden character..
+
+Command 24th   sed -n 'l 20' filename.txt
+ so this command is useful in the case of suppose in your file you have a long line code or it is not coming in your terminal, so for reading that code you need to move your cursor here and there  but this above command will take whatever number, here we are providing 20 that means you can see the 20 character on that line.. like wise you can use this command..
+
+Command 25th  sed '3 r externalfile' filename.txt
+ you can add the external files data in your file too  example in this example I am having one external file called externalfile and I am having data – hello from the external file  once you fire this command sed '3 r externalfile' data  so whatever data will be there in the external file will be added to your current data file.. like wise you can do for other file as well..  here r attribute is important
+
+Command 26th  sed '/india/ q' filename.txt
+ in this command it will search for india and once it got first india record then it will quite from the process, it will not go for the next line.. (doesn’t matter how many india record is available in the file)
+
+Command 27th  sed '3 e date' filename.txt
+ Through this command we can mention the date as well in your current file.. like wise you can add the other command as well  example  
+sed -i '3 e ls -ltr' data
+
+Command 28th  sed '=' filename
+ this will provide you the line number..
+
+Command 29th  sed -n '/^a/p' filename.txt
+  this command will give you the names which is staring from the a character.. (here name is the filename and inside which I have multiple names record).. similar way you can check for the other character as well..
+
+ Command 30th  sed -n '/a$/p' filename.txt
+ This command will helpful to fetch the names records which ends with a character..
+
+Command 31 ls -ltr *.txt 
+ This command is useful to get all the *.txt files which is available in the directory..
+
+Command 32nd  ls -ltr ab* - you can get the files by using this command too here it will get the file list which will be starting from the ab character..
+
+Command 33rd  sed -n '/[[:digit:]]/p' possix  This command will give you the only number’s line and also character and number (included line) which is available in the file.. (here possix is the filename)  example output  
+123456
+ helo3456
+
+ command 34th  sed -n '/[[:upper:]]/p' possix  This will give you the uppercase line number and also those line where uppercase is present.. possible output
+HELLO
+ AMIT
+ hello, World
+
+ command 35th  similar way for lower as well  sed -n '/[[:lower:]]/p' possix  output 
+hey
+ amit
+ helo3456
+ hello, World
+
+ command 36th  for space lines -- sed -n '/[[:space:]]/p' possix
+
+ command 37th  for special character  sed -n '/[[:punct:]]/p' possix  punct is the word..
+
+ command 38th  sed -n '/[[:alpha:]]/p' possix  this command will not print the number line..
+
+
+
+
+
+
+
+

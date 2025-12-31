@@ -1,0 +1,158 @@
+AWK command -- 
+
+it is a text processing command.. we can provide the pattern to the awk command.. so now I am having this below data file and will do the operation in this file only..
+AWK is only running on csv (comma separated file) or tsv file (tab separated file)
+id      name    salary  country
+1       amit    100000  india
+2       megha   10000   austrelia
+3       namrata 5000    germany
+4       pratu   2000    japan
+5       sujata  55000   canada
+
+Step1 – see the particular column data – example want to see the 2nd column data –
+Command -- awk '{print $2}' data or awk -F '{print $2}' data.csv
+We are using the -F option when we are having the csv file (comma separated file)
+Output -- name
+amit
+megha
+namrata
+pratu
+Sujata
+
+Suppose I want to see the multiple columns at a same time then use the below command..
+awk '{print $2,$3}' data
+output of the command -- 
+amit 100000
+megha 10000
+namrata 5000
+pratu 2000
+sujata 55000
+
+step2nd – suppose I want to search for the last column in the file so command will be --
+awk '{print $NF}' data
+$NF means “the last field in the current line”
+This basically showing the last column data.
+
+output –
+country
+india
+austrelia
+germany
+japan
+canada
+important – we can use a awk command in other way as well, like suppose you have multiple files and you want to see the only file name then use the below command --
+
+ls -ltr | awk '{print $NF}'
+$NF is for the last column of every line. (iff you want to check for other columns then you can also do this, just change the $ field like $1, $2 you can get that column details..)
+
+Example  ls -ltr | awk ‘{print $1, $2}’ 		 like wise you can use
+output – 
+16
+data
+abc
+def
+xyz
+
+step 3rd – adding numbering to the line, use the below command –
+awk  '{print NR, $0}' data
+output – 
+1 id    name    salary  country
+2 1     amit    100000  india
+3 2     megha   10000   austrelia
+4 3     namrata 5000    germany
+5 4     pratu   2000    japan
+6 5     sujata  55000   canada
+
+Step4th – use this command -- awk  '{print NR, ") " $0}' data for adding ) after the numbering..
+Output – 
+1 ) id  name    salary  country
+2 ) 1   amit    100000  india
+3 ) 2   megha   10000   austrelia
+4 ) 3   namrata 5000    germany
+5 ) 4   pratu   2000    japan
+6 ) 5   sujata  55000   canada
+
+Note – suppose you have a csv file and inside that we have below fields like id,name,lastname, email , profession and country and assume that inside that csv file you have thousands of line, but you want to take the email address column only so here awk command will be helpful
+Command -- awk -F, '{print $5}' data
+Output –
+email
+amit@gmail.com
+megha@gmail.com
+nama@gmail.com
+pratu@gmail.com
+sujata@gmail.com
+step5th – suppose you have large file and you have salary column available, so salary range is like changes, some of them having 10000, someof then having 15000 and some of them having 100000, now I want to search the record for those whose salry is greater than the 10000, so this can be done through the awk command, so command should be –
+
+command -- awk -F',' '{ if ($NF > 10000) print $0 }' data.csv
+output –
+id      name    salary  country         email
+1       amit    100000  india           amit@gmail.com
+5       sujata  55000   canada          sujata@gmail.com
+
+Step6th – requirement like suppose in this table amit user having the 100000  salary and I wanted to update  his salary from 100000 to 200000 then command should be..
+Command -- awk -F ',' '{if ($2=="Robert Brown") {$NF="90000"} print $0}' data.csv
+If you want to change the any field like the any field with any specific column then use $1,$2,$3 instead of $NF
+Output – 
+id      name    salary  country         email
+1       amit 200000 india amit@gmail.com
+2       megha   10000   austrelia       megha@gmail.com
+3       namrata 5000    germany         nama@gmail.com
+4       pratu   2000    japan           pratu@gmail.com
+5       sujata  55000   canada          sujata@gmail.com
+
+Step7th – requirement is like in the particular file, search for the particular word, and print that line.. in my file amit word is repeated and want to see that word, so command should be..
+Command -- awk '/amit/ {print $0}' data.csv
+Output—
+1       amit    100000  india           amit@gmail.com
+6       amit    80000   india           amit@gmail.com
+
+Step 8th – suppose in particular file I want to search for particular line, like suppose want to see only line no 4, then my command should be..
+Command-- awk 'NR=="4" {print $0}' data
+Output of the command –
+3       namrata 5000    germany         nama@gmail.com
+
+For multiple lines -- awk 'NR=="4", NR=="5" {print $0}' data
+Output – 
+3       namrata 5000    germany         nama@gmail.com
+4       pratu   2000    japan           pratu@gmail.com
+
+Step 9th – suppose in your file there is a one row on which you didn’t add anything, that means the line is blank, and that blank line I want to print, so the command should be –
+awk 'NF==0 {print NR}' data.csv
+above command will give you the line number..
+
+step 10th—suppose I want to see the number of lines inside my file then the command should be..
+command -- awk 'END {print NR}' data.csv
+it will give you the number of lines available inside the file..
+
+step 11th – you can use the awk command for for loop also.. example –
+command -- awk 'BEGIN {for (i=0;i<=10;i++) print i;}'
+output –
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Step 12th – you can use the while loop too inside the awk command – 
+Command -- awk 'BEGIN {while(i<10){i++; print "num is " i}}'
+
+Output –
+num is 1
+num is 2
+num is 3
+num is 4
+num is 5
+num is 6
+num is 7
+num is 8
+num is 9
+num is 10
+
+
+i

@@ -1,0 +1,158 @@
+
+Linux Volume –
+
+On server for storing the data we are using the storage concept.
+And storage are in the form of blocks, blocks are similar like the disk space on your computer. (disk and block are same)
+In the form of linux we are saying this concept as volume..
+
+
+Block/volume/disk  similar  and used for storage purpose..
+
+2 important commands we basically needed here while working on the volume.
+-	lsblk 	(list the block) – which blocks are attached to the system that we will get to know.
+-	df -h       (disk file system in human readable format)
+
+
+while giving the name to the partition we are using In the below format.
+/dev/xvda  this is the root volume
+Where /dev means the device and name always starting with /xvda for the linux os.
+
+
+df -h     will show you the disk file system and it is showing the available disk space and the free disk space also the mountpoint  mountpoint basically means where this partition is mounted (attached  basically the directory name)
+
+
+Note  while creating the volume make sure that volume needs to be created in the instance availability zone. That means (where you created the instance on that availability zone you need to create the volumes)
+
+
+For root when you are creating the volume  in linux the name should be of the volume is  sda1/sdb1/sdc/sdd/sde/ (from a to the e  which are basically associated to the root)
+
+
+And when you are creating the volume as a data then name should be the /sdf/sdg/sdi/sdj like wise.
+So for data volume we need to start name with the sdf..
+Note  when you are selecting sfd in volume in AWS  in linux it should be translated as /xvdf (similarly all other volumes will be come like  sdg/xvdg then sdh/xvdh then sdh/xvdh like wise you will get)
+
+
+When you attaching this volume to the instance in AWS  check from the linux terminal by the command  lsblk  you will see that this volume is attached to the instance. But as of now this is not mounted yet.
+
+
+Now let us understand the physical/logical volume and the LVM 
+As of now we just made the volumes, and if you want to use that volume then we need to convert those logical volume as the physical volume.
+
+
+Let us understand the volume group 
+So combining multiple logical volume in to the group this process we called as a volume group.
+(basically combining multiple volumes here)
+And from that volume group we are taking some gbs of data and can create the logical volume.
+Example -- Like suppose you have created the 3 volumes as 10/12 and 14 gb and you attached that volumes to the instance and then you created the volume group and combined these 3 volumes in the group  so now your volume group will be of 36GB, now we can keep some gb out from that volume group and can create the logical volume like  I can use 10gb of volume group and can create the logical  volume. (we can increase and reduce the logical volume as well)
+
+
+Physical volume are those which is attached to the instance in the form of EBS
+Note  physical volume/logical volume and the volume group are managing by the LVM (logical volume manager.)
+
+
+So now let us go with the LVM 
+Fire command  sudo lvm
+Check how many do you have physical volumes by the command  pvs (this will show you the available physical volumes)
+
+
+As o now attached volumes are the block only  let us create these volume as the physical volume.
+
+
+Go to lvm by command  lvm
+Use command to create the physical volume is  pvcreate /dev/xvdf
+You can create multiple physical volume by the command  pvcreate /dev/svdf /dev/xvdg /dev/xvdh
+(through this command physical volume will be created successfully)
+You can see this physical volumes by the command  pvs
+Now let us create the volume group by adding 2/3 physical volumes in the volume group  so you can use the command  vgcreate amitgroup physicalvolume1 physicalvolume2
+Example  vgcreate amitgroup /dev/xvdf /dev/xvdg
+You can see that volume group is created..
+You can see the volume group by the command  vgs (this will show you the group information)
+
+
+Now let us create the logical volumes from the volume group.
+Use the command  lvcreate -L sizeinGB -n nameofLV volumegroupname
+To create the logical volume use the command  lvcreate -L 10G -n amitlogicalvolume amitgroup
+(lvcreate is the command, -L used for assigning the size, -n for the name and the volume group name  from which we are creating the logical volume)
+Note  pvdisplay (through this command we will get the detailed information of the physical volumes) (size, name, total size, free size, id of volume, pv name etc)
+Note  vgdisplay (used to get all the information of the volume groups, (size, name, total size, free size, id of volume, pv name etc))
+Note  similarly for logical volume as well.
+lvdisplay  lvdisplay (used to get all the information of the logical volumes, (size, name, total size, free size, id of volume, pv name etc))
+
+
+whatever we have created as of now like the volume groups, physical volumes and the logical volumes, those are not we will get when we are using the df -h command (cause they are not mounted yet as of now), so let us mount those volumes.
+
+
+Now let us mount the logical volume  first see the logical volume information by  lvs
+First create the directory  by command  mkdir amit_lv_mount
+Now format your created logical volume by the command 
+mkfs.ext4  /dev/volumegroup/logicalvolume
+example  mkfs.ext4 /dev/volumegroup/logical1
+through this command  we can format the volumes.
+
+
+Now mount this to the folder 
+mount /dev/volumegroup/logical1 /home/ubuntu/amit_lv_mount
+hit enter this will be mounted to your directory.
+Now use both the commands  lsblk and df -h (you can see that this partitions are mounted to that folder..)
+Now this directory is reusable.
+Go to this directory  cd amit_lv_mount
+and here you can do whatever you want  this is in the use now (this disk is now usable)
+
+
+Note  we can unmount this disk as well by the umount command
+Example – umount amit_lv_mount
+
+
+We have checked that from lvm we have created the physical volumes then the volume group and from that the logical volume..
+
+
+Now let us create mount or volumes through another way. (the volume is created through the EBS)
+That volumes we are mounting through this below concept..
+
+
+Fire lsblk command to check that volume details.
+Create the directory first  mkdir amit_disk_mount
+Use the below command to format the volume 
+mkfs -t ext4 /dev/xvdh
+
+
+mount this volume now  mount /dev/xvdh /amit_disk_mount/
+
+
+now you can see this /dev/xvdh is also mounted and now is reusable..
+
+
+new concept  dynamic storage management
+in this concept we can add the storage as well as can reduce the storage.
+Example  we have created 10G and 12G physical volumes and through which we have created the volume group of 22G and then from this we have created the logical volume of  10G..
+Now let us say I have installed a big application and it used almost 10G now I want to extent the volume of that partition, let us see how we can do this through the dynamic storage..
+
+
+df -h   to see the disk file system
+Go the lvm by the command  lvm
+lvextend -L +5G logicalvolumenamepath 
+
+
+Example  lvextend -L +5G /dev/mapper/volumegroup-logical1
+
+
+Now come out to the lvm and can see the size changed of the storage by the df -h command..
+
+
+You can remove/delete the logical volume by the command 
+
+sudo lvremove /dev/volumegroup/logical1
+
+command to delete the volume group 
+
+sudo vgremove volumegroup
+
+command to delete the physical volumes 
+
+sudo pvremove /dev/nvme1n1 /dev/nvme2n1
+
+
+you can detach the volume when required  from the EBS option.. just select the volume and go to action and then detach the volume..
+
+
+

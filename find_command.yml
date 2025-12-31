@@ -1,0 +1,45 @@
+Find Command 
+
+Find command basically used to search the files and directories inside the location..
+By various way you can find the files and directories..
+
+1)	Search particular file inside the directory   find . -name "Sed Command.docx"
+
+2)	Search file by its size  find . -size +1000k (small k we are using) / find . -size +10M (capital M we are using) /  find . -size +1G (capital G we are using here) /  find . -size +1c ( c = bytes (1 byte = 1 character) )
+
+3)	For finding the folder  find . -type d  it will show you multiple directories inside the folder
+
+4)	This will show you all the available files inside the folder  find . -type f
+
+5)	Finding the available links  find . -type l
+
+6)	For finding the blocks  find . -type b
+
+7)	For sockets we are using - find . -type s 
+
+
+8)	Finding file by its exact name   find . -name "slip.docx"
+
+9)	Case insensitive (that means ignore upper and lower case)  find . -iname "Slip.docx"
+
+10)	Search the files by the user  find . -user root
+
+11)	find files by inode number  find . -inum 9032594 (this represent the inode number)
+
+12)	search files by the links  find . -links 1
+
+13)	finding the files by the permission  find . -perm 644
+
+14)	find files by initial letter  find . -iname o*
+
+15)	search all those files which is added newly after particular files  find . -newer slip.docx
+
+16)	see the empty files and folders  find . -empty
+
+17)	search the empty files and also delete those at the same time  find . -empty -exec rm {} \;  the slash is different \ not the regular one /
+
+18)	search files by more than 1 mb but not more than 15 mb  find . -size +1M -size -15M
+
+19)	search files which is created 1 day before  find . -mtime 1
+
+

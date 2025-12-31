@@ -1,0 +1,21 @@
+Copy and move command  
+
+Cp 1.txt 10.txt  this command will copy all the content inside the 1.txt and paste into the 10.txt
+Cp 1.txt directoryname  this will copy the 1.txt into the directoryname
+cp 1.txt 10.txt xyz.doc newdirectory/  this will copy multiple files in the directory
+cp -r myfolder /tmp/  copy directory recursively
+cp -v file.txt /tmp/  verbose copy  while copying it will show you the output like ('3.html' -> 'newdirectory/3.html')
+cp 1.txt /home/ec2-user/  this will copy the 1.txt to exact/absolute path
+
+
+mv command  
+mv command used to rename the file and also cut and paste the file from one place to the another place..
+
+mv file1.txt file2.txt  rename the file1.txt to file2.txt
+mv 10.txt 11.txt /tmp/  this will cut and paste the file from current folder to the /tmp folder
+mv *.log /var/logs/archive/  move multiple files from onel place to the another place..
+mv -v file.txt /tmp/  verbose move  it will show the output like  renamed 'abc.txt' -> 'newdirectory/abc.txt'  another imp thing from the copy command is let say in abc I am having data so that data I want to copy to xyz file then I can use the command like  cp abc.txt xyz.txt all the data which is available in abc will come into the xyz file
+
+
+
+

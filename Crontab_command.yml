@@ -1,0 +1,40 @@
+Crontab command
+
+crontab stands for "cron table", and it's used to schedule and manage recurring tasks in Unix-like systems.
+
+* * * * * /path/to/command
+│ │ │ │ │
+│ │ │ │ └─ Day of Week (0-7, Sunday=0 or 7)
+│ │ │ └─── Month (1-12)
+│ │ └───── Day of Month (1-31)
+│ └─────── Hour (0-23)
+└───────── Minute (0-59)
+
+*-> minutes -- (0-59)
+*->hour  -- (0-23)
+*->day of month --  (1-31)
+*->month -- (1-12)
+*->week  -- (0-7, Sunday=0 or 7)
+
+If at the time of running crontab command you will get the error like – command not found then reason is crontab command is not installed on the machine, so here we need to install the command inside the system..
+
+Installation of crontab
+sudo dnf install cronie  install cronie
+sudo systemctl enable crond   enable crontab
+sudo systemctl start crond   start the crontab
+systemctl status crond   check the status
+crontab -e   # to edit the crontab
+crontab -l   # to list existing jobs
+
+
+some examples for crontab command..
+1)	0 2 * * * /home/ec2-user/backup.sh   Run every day at 2:00 AM
+2)	*/5 * * * * /home/ec2-user/abc.sh   Run every 5 minutes
+3)	30 6 * * 1 /home/ec2-user/report.sh   Run every Monday at 6:30 AM
+4)	0 0 1 * * /home/ec2-user/monthly.sh   Run on the 1st of every month at midnight
+5)	0 22 * * 1-5 /home/ec2-user/work_hours.sh   Run Monday–Friday at 10:00 PM
+6)	@reboot /home/ec2-user/startup.sh   Run once at system boot
+7)	0 */6 * * * /usr/bin/uptime >> /home/ec2-user/uptime.log   Log server uptime every 6 hours
+
+
+

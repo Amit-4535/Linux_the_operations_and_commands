@@ -1,0 +1,10 @@
+Chgrp 
+
+The chgrp command changes the group associated with a file or directory, without changing the user (owner).
+
+Change the group of the single file   sudo chgrp developers file.txt
+
+Change the group of the directory   sudo chgrp devteam /var/www
+
+
+

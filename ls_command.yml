@@ -1,0 +1,39 @@
+Ls commands 
+
+Ls  list the files..
+
+Ls -a  showing all the files hidden as well
+
+Ls -R  Recursively list all files & subdirectories
+
+Ls -r  revers order listing
+
+Ls -li  show inode number of files
+
+Ll  similar to the ls -l command getting extra info of the files and folders
+
+Ls -t  The -t option in the ls command sorts files and directories by modification time, with the most recently modified files shown first.
+
+Stat filename  The stat command displays detailed information about a file or directory
+		It will tell that when file is created.. (age of the file (file born time))
+
+                File filename  The file command is used to determine the type of a file, based on its content, not its extension. It examines the actual data to tell what kind of file it is.
+Ls directoryname  this will show you the current folder and all the files which are available inside          that directory..
+
+Ls -la or ls -al  showing files and hidden file as well
+
+Ls -lh  Human-readable file sizes (KB, MB, GB)
+
+Ls -ltr  Sort by time, reverse order (newest at bottom)
+
+
+
+Ls -lt  sort by modification time (latest first)
+
+ls -d */  showing only directories
+ls -S  Sort by file size (largest first)
+ls -lr  Show files in reverse alphabetical order
+find . -type f -mtime -1  Show files modified within last 24 hours
+
+
+

@@ -1,0 +1,23 @@
+Chown command 
+
+Basically used to change the owner of the file..
+
+The chown command is used to change the owner and/or group of a file or directory.
+
+Change only owner   chown amit file.txt
+
+Change owner and group   chown amit:developers file.txt
+
+Change group only   chown :developers file.txt
+
+Change ownership recursively for directories   chown -R amit:developers /mydir
+
+🔹 Summary Table
+Command	Purpose
+chown amit file.txt	Change owner
+chown amit:dev file.txt	Change owner and group
+chown :dev file.txt	Change group only
+chown -R amit:dev /dir	Change ownership recursively
+chown --reference=a b	Copy ownership from file a to b
+
+

@@ -1,0 +1,33 @@
+Chmod 
+Basically used to change the modification of the file..
+The chmod command in Linux is used to change the permissions of a file or directory.
+
+🔹 Permission Values
+Permission	Symbol	Numeric
+Read	r	4
+Write	w	2
+Execute	x	1
+None	-	0
+
+🔹 Modes of Using chmod
+✅ 1. Numeric (Octal) Mode
+Each digit = sum of permissions for user/group/others.
+chmod 755 file.sh
+Digit	Meaning
+7	rwx (4+2+1)
+5	r-x (4+0+1)
+0	--- (no permissions)
+
+✅ 2. Symbolic Mode
+Use u (user), g (group), o (others), and a (all)
+bash
+CopyEdit
+chmod u+x script.sh        # Add execute to user
+chmod go-w file.txt        # Remove write from group and others
+chmod a+r file.txt         # Add read to everyone
+chmod u=rwx,g=rx,o=r file  # Set exact permissions
+
+Make script executable:  chmod +x myscript.sh
+
+
+
